@@ -1,0 +1,975 @@
+/* src/index.css */
+
+/* Reset some default styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Light Theme Variables */
+:root {
+  --background-color: #f0f2f5;
+  --card-background: #ffffff;
+  --text-color: #333333;
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --hover-background: #e0f7fa; /* Skyish Blue */
+  --border-color: #007bff;
+  --button-hover: #0056b3;
+  --tag-background: #007bff;
+  --tag-text-color: #fff;
+}
+
+/* Dark Theme Variables */
+body.dark {
+  --background-color: #121212;
+  --card-background: #1e1e1e;
+  --text-color: #e0e0e0;
+  --primary-color: #90caf9;
+  --secondary-color: #b0bec5;
+  --hover-background: #263238;
+  --border-color: #90caf9;
+  --button-hover: #5a9bd5;
+  --tag-background: #90caf9;
+  --tag-text-color: #1e1e1e;
+}
+
+/* Body Styling */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Container */
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+header h1 .foster {
+  color: #FFD700; /* Yellow */
+}
+
+header h1 .health {
+  color: var(--primary-color); /* Blue */
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  transition: color 0.3s ease;
+}
+
+.theme-toggle:hover {
+  color: var(--secondary-color);
+}
+
+/* Centered New Note Button */
+.center-button {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.center-button button {
+  padding: 12px 25px;
+  font-size: 16px;
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.center-button button:hover {
+  background-color: var(--button-hover);
+  transform: translateY(-2px);
+}
+
+/* Filter Bar */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+/* Search Bar */
+.search-bar {
+  flex: 1;
+}
+
+.search-bar input[type='text'] {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+  background-color: var(--card-background);
+  color: var(--text-color);
+}
+
+.search-bar input[type='text']:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+/* Dropdown Styles */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 10px 16px;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dropbtn:hover {
+  background-color: var(--button-hover);
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: var(--card-background);
+  min-width: 160px;
+  max-height: 200px; /* Set max height for scrollability */
+  overflow-y: auto; /* Enable vertical scrolling */
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+  border-radius: 8px;
+}
+
+.filter-highlight:hover .dropdown-content,
+.filter-tags:hover .dropdown-content {
+  display: block;
+}
+
+/* Tags Dropdown Content */
+.tags-dropdown {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tag-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+.tag-label input {
+  margin: 0;
+}
+
+/* Template List */
+.template-list {
+  background-color: var(--card-background);
+  padding: 20px 25px;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.template-list h2 {
+  margin-bottom: 15px;
+  color: var(--secondary-color);
+}
+
+.template-list ul {
+  list-style-type: none;
+  max-height: 600px; /* Set max height for the list */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.template-list li {
+  padding: 20px;
+  margin-bottom: 15px;
+  background-color: var(--card-background);
+  border-radius: 12px;
+  border: 2px solid transparent;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, border 0.3s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.template-list li:hover {
+  background-color: var(--hover-background);
+  transform: translateY(-5px);
+  border: 2px solid var(--border-color);
+}
+
+.template-list li.highlighted {
+  border: 2px solid #FFD700; /* Gold color */
+  background-color: #fffacd; /* Lemon chiffon */
+}
+
+.template-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.template-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.template-info h3 {
+  font-size: 1.2rem;
+  color: var(--primary-color);
+  margin-bottom: 5px;
+}
+
+.template-time {
+  font-size: 0.9rem;
+  color: var(--secondary-color);
+}
+
+/* Tags Styling */
+.tag {
+  background-color: var(--tag-background);
+  color: var(--tag-text-color);
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  margin-right: 5px;
+  display: inline-block;
+}
+
+/* Magic Wand Icon */
+.list-icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.list-icon:hover {
+  transform: scale(1.2);
+}
+
+.highlighted-icon {
+  color: #FFD700; /* Gold color */
+}
+
+/* Tags Dropdown in Template View */
+.tags-dropdown-container {
+  position: relative;
+  display: inline-block;
+}
+
+.tags-dropbtn {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 8px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.tags-dropbtn:hover {
+  background-color: var(--button-hover);
+}
+
+.tags-dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: var(--card-background);
+  min-width: 120px;
+  max-height: 150px; /* Set max height for scrollability */
+  overflow-y: auto; /* Enable vertical scrolling */
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+  border-radius: 8px;
+}
+
+.tags-dropdown-container:hover .tags-dropdown-content {
+  display: block;
+}
+
+/* Template View */
+.template-view {
+  background-color: var(--card-background);
+  padding: 25px 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.template-title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.template-title {
+  font-size: 1.8rem;
+  color: var(--primary-color);
+  margin-bottom: 5px;
+}
+
+.template-time {
+  font-size: 0.9rem;
+  color: var(--secondary-color);
+}
+
+/* Selected Tags Container */
+.selected-tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.selected-tag {
+  background-color: var(--tag-background);
+  color: var(--tag-text-color);
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.remove-tag-button {
+  background: none;
+  border: none;
+  color: var(--tag-text-color);
+  margin-left: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* Icons Container */
+.icons-container {
+  display: flex;
+  gap: 15px;
+}
+
+.icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.icon:hover {
+  transform: scale(1.2);
+}
+
+.magic-icon.highlighted-icon {
+  color: #FFD700; /* Gold color */
+}
+
+.check-icon {
+  color: #28a745; /* Green */
+}
+
+.check-icon:hover {
+  color: #218838; /* Darker Green */
+}
+
+.edit-icon {
+  color: #ffc107; /* Amber */
+}
+
+.edit-icon:hover {
+  color: #e0a800; /* Darker Amber */
+}
+
+.copy-icon {
+  color: #17a2b8; /* Teal */
+}
+
+.copy-icon:hover {
+  color: #138496; /* Darker Teal */
+}
+
+/* Subtopic View */
+.subtopic-view {
+  margin-bottom: 20px;
+  padding: 15px 20px;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  transition: background-color 0.3s ease;
+}
+
+.subtopic-view:hover {
+  background-color: #e9ecef;
+}
+
+.subtopic-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.subtopic-header h3 {
+  font-size: 1.1rem;
+  color: var(--primary-color);
+}
+
+.copy-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
+
+.copy-button:hover {
+  color: var(--primary-color);
+}
+
+/* View Buttons */
+.view-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.view-buttons button {
+  padding: 10px 25px;
+  font-size: 15px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: opacity 0.3s ease, transform 0.2s ease;
+}
+
+.view-buttons button:first-child {
+  background-color: var(--secondary-color);
+  color: #fff;
+}
+
+.view-buttons button:first-child:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+.view-buttons button:last-child {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.view-buttons button:last-child:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+/* Template Form */
+.template-form {
+  background-color: var(--card-background);
+  padding: 25px 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  max-width: 800px; /* Increased max-width for better layout */
+  margin: 0 auto; /* Center the form */
+}
+
+.template-form h2 {
+  margin-bottom: 20px;
+  color: var(--secondary-color);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+/* Tags Selection Container */
+.tags-selection-container {
+  display: flex;
+  flex-direction: column; /* Stack tags vertically */
+  max-height: 150px; /* Set max height for scrollability */
+  overflow-y: auto; /* Enable vertical scrolling */
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  background-color: var(--card-background);
+}
+
+/* Tag Checkbox Labels */
+.tag-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.tag-checkbox-label input {
+  margin: 0;
+}
+
+/* Selected Tags Container */
+.selected-tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.selected-tag {
+  background-color: var(--tag-background);
+  color: var(--tag-text-color);
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.remove-tag-button {
+  background: none;
+  border: none;
+  color: var(--tag-text-color);
+  margin-left: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* Subtopic Styling */
+.subtopic {
+  background-color: #f1f3f5;
+  padding: 15px 20px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.subtopic input[type='text'],
+.subtopic textarea {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px; /* Increased padding for better size */
+  font-size: 16px; /* Increased font size */
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  transition: border-color 0.3s ease;
+  background-color: var(--card-background);
+  color: var(--text-color);
+}
+
+.subtopic input[type='text']:focus,
+.subtopic textarea:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+.subtopic-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.add-button,
+.remove-button {
+  padding: 8px 16px; /* Increased padding for better size */
+  font-size: 14px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.add-button {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.add-button:hover {
+  background-color: #218838;
+  transform: translateY(-2px);
+}
+
+.remove-button {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.remove-button:hover {
+  background-color: #c82333;
+  transform: translateY(-2px);
+}
+
+/* Form Buttons */
+.form-buttons {
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+}
+
+.save-button {
+  background-color: var(--primary-color);
+  color: #fff;
+  transition: opacity 0.3s ease, transform 0.2s ease;
+}
+
+.save-button:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+.cancel-button {
+  background-color: var(--secondary-color);
+  color: #fff;
+  transition: opacity 0.3s ease, transform 0.2s ease;
+}
+
+.cancel-button:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.limit-selector {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.limit-selector select {
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #ced4da;
+  background-color: var(--card-background);
+  color: var(--text-color);
+}
+
+.page-buttons {
+  display: flex;
+  gap: 5px;
+}
+
+.pagination-button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--primary-color);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.pagination-button:hover {
+  background-color: var(--button-hover);
+  transform: translateY(-2px);
+}
+
+.pagination-button.active {
+  background-color: var(--button-hover);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .template-title-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .icons-container {
+    justify-content: flex-start;
+  }
+
+  .subtopic-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .view-buttons {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+  }
+
+  .filter-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .filter-highlight .dropdown-content,
+  .filter-tags .dropdown-content {
+    right: 0;
+  }
+
+  .page-buttons {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .tags-selection-container {
+    max-height: 200px; /* Increase max-height on smaller screens if needed */
+  }
+}
+
+/* Improved Background Aesthetics */
+body {
+  background-image: linear-gradient(135deg, #ece9e6 0%, #ffffff 100%);
+  /* Alternatively, use a subtle pattern or image */
+  /* background-image: url('/path-to-your-pattern.png'); */
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+body.dark {
+  background-image: none; /* Remove gradient in dark mode */
+  background-color: var(--background-color);
+}
+
+/* Enhancing Scrollbars for Better Aesthetics */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--card-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+  border-radius: 4px;
+  border: 2px solid var(--card-background);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--button-hover);
+}
+
+/* Additional Visual Enhancements */
+
+/* Smooth transition for tags appearance */
+.tag {
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.tag:hover {
+  transform: scale(1.05);
+}
+
+/* Style for the add subtopic button */
+.add-button {
+  padding: 8px 16px;
+}
+
+/* Adjust the subtopic input boxes */
+.subtopic input[type='text'],
+.subtopic textarea {
+  font-size: 16px;
+  padding: 10px;
+}
+
+/* Drag and Drop Area */
+.dropzone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed var(--primary-color);
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  color: var(--secondary-color);
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+  cursor: pointer;
+  background-color: #f8f9fa;
+}
+
+.dropzone.active {
+  border-color: var(--button-hover);
+  background-color: #e0f7fa;
+}
+
+.dropzone p {
+  font-size: 16px;
+}
+
+/* Parsed Text Container */
+.parsed-text-container {
+  margin-top: 15px;
+}
+
+.parsed-text-container label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.parsed-text-container textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  resize: vertical;
+  min-height: 150px;
+  background-color: var(--card-background);
+  color: var(--text-color);
+  transition: border-color 0.3s ease;
+}
+
+.parsed-text-container textarea:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+/* Error Message Styling */
+.error-message {
+  color: #dc3545; /* Bootstrap danger color */
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+/* Ensure the form maintains its layout */
+.template-form {
+  /* Existing styles... */
+}
+
+/* Tags Selection Container Scroll */
+.tags-selection-container {
+  display: flex;
+  flex-direction: column; /* Stack tags vertically */
+  max-height: 150px; /* Set max height for scrollability */
+  overflow-y: auto; /* Enable vertical scrolling */
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  background-color: var(--card-background);
+}
+
+/* Tag Checkbox Labels */
+.tag-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.tag-checkbox-label input {
+  margin: 0;
+}
+
+/* Selected Tags Container */
+.selected-tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.selected-tag {
+  background-color: var(--tag-background);
+  color: var(--tag-text-color);
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.remove-tag-button {
+  background: none;
+  border: none;
+  color: var(--tag-text-color);
+  margin-left: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* Existing styles continue... */
+
+/* Ensure other form elements retain their styling */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+input[type='text'],
+textarea {
+  /* Existing input styles... */
+}
+
+.button,
+button {
+  /* Existing button styles... */
+}
+
+/* Additional responsive design and other styles as previously defined */
