@@ -11,10 +11,6 @@
 - [Technologies Used](#technologies-used)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Project Structure](#project-structure)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
 
 ## Overview
 
@@ -46,8 +42,8 @@
 
 ## Demo
 
-![App Screenshot](a1.png)
 ![App Screenshot](a2.png)
+![App Screenshot](a1.png)
 ![App Screenshot](a3.png)
 
 *Figure 1: Screenshot of Clinical Note Templates application.*
