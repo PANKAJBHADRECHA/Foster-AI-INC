@@ -46,9 +46,9 @@
 
 ## Demo
 
-![App Screenshot](./screenshots/a1.png)
-![App Screenshot](./screenshots/a2.png)
-![App Screenshot](./screenshots/a3.png)
+![App Screenshot](a1.png)
+![App Screenshot](a2.png)
+![App Screenshot](a3.png)
 
 *Figure 1: Screenshot of Clinical Note Templates application.*
 
